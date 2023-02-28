@@ -5,8 +5,9 @@
 
 
 [test]
+http://127.0.0.1:48080/mc/hello
 http://127.0.0.1:48080/mc/test_thymeleaf
-
+http://127.0.0.1:48080/mc/test_db
 
 [DB]
 	1. mybatis/?Mapper.xml 작성
