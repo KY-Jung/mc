@@ -1,0 +1,71 @@
+
+################################################################################
+# description
+
+# java -jar -Dspring.profiles.active=prod file_name.jar
+################################################################################
+
+################################################################################
+server:
+  servlet:
+    context-path: /mc
+  port: 48080
+################################################################################
+
+################################################################################
+spring:
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console                     # http://127.0.0.1:48080/mc/h2-console
+  datasource:
+    url: jdbc:h2:~/local
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        ddl-auto: update
+        format_sql: true
+        show_sql: true
+
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    check-template-location: true			# templates 디렉토리에 파일이 있는지 없는지 체크, 없으면 에러를 발생
+  devtools:
+    restart:
+      enabled: true							# 소스파일에 변화가 있을 때 자동으로 서버 재 시작 설정
+      additional-exclude: static/**,templates/**
+    livereload:
+      enabled: true							# 정적 리소스에 변화가 있을 때 바로 반영
+################################################################################
+
+################################################################################
+logging:
+  level:
+    kr:
+      gainsys:
+        mc:
+          controller: debug
+    root: info
+
+#    logging.logback.rollingpolicy.max-history=30
+#    logging.logback.rollingpolicy.max-file-size=100MB
+#    logging.file.name=logs/sbb.log
+#    logging.logback.rollingpolicy.file-name-pattern=${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+#    logging.pattern.dateformat=yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul
+################################################################################
+
+################################################################################
+mybatis:
+  config-location: classpath:mybatis-config.xml
+  type-aliases-package: kr.gainsys.mc.vo			# 매핑할 모델의 패키지 경로 (mybatis 매핑 type을 짧게 쓰기 위한 설정)
+  mapper-locations: classpath:mybatis/**/*.xml		# mapper.xml 위치 명시
+################################################################################
+
