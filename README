@@ -7,27 +7,27 @@
 [test]
 http://127.0.0.1:48080/mc/hello
 http://127.0.0.1:48080/mc/test_thymeleaf
-http://127.0.0.1:48080/mc/test_db
+http://127.0.0.1:48080/mc/test_post
 
-[DB]
-	1. mybatis/?Mapper.xml 작성
-	2. kr.gainsys.mc.mapper/?Mapper.java 작성
-	3. kr.gainsys.mc.service.?Service.java 작성
-	4. kr.gainsys.mc.controller.? 에서 호출
-	-. 필요시 Vo 추가
+[mybatis]
+1. mybatis/?Mapper.xml 작성
+2. kr.gainsys.mc.mapper/?Mapper.java 작성
+3. kr.gainsys.mc.service.?Service.java 작성
+4. kr.gainsys.mc.controller.? 에서 호출
+-. 필요시 Vo 추가
 
 
 [다국어]
-	-. kr.gainsys.mc.config.MessageConfig 에서 설정
-	-. messages/message_en.propertis 에 추가
+-. kr.gainsys.mc.config.MessageConfig 에서 설정
+-. messages/message_en.propertis 에 추가
 
 
 [dev/prod]
-	-. -Dspring.profiles.active=prod or dev 로 구분
+-. -Dspring.profiles.active=prod or dev 로 구분
 
 
 [JPA]
-    -. time zone 설정하는 방법
+-. time zone 설정하는 방법
 
 
 
@@ -44,13 +44,17 @@ http://127.0.0.1:48080/mc/test_db
 
 
 [Apache 연동]
-	-. path 만 등록	--> 일단 보류
-		-. https://java.ihavenomoney.co.kr/?page_id=275
-	-. tomcat10 으로 it, opensso 업그레이드 시도
-		--> ?
+-. path 만 등록	--> 일단 보류
+    -. https://java.ihavenomoney.co.kr/?page_id=275
+-. tomcat10 으로 it, opensso 업그레이드 시도
+    --> ?
 
 
 [JNDI]
+
+
+
+[2 DB]
 
 
 

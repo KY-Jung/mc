@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+	implementation 'com.google.code.gson:gson:2.9.0'
 
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
 	testImplementation 'junit:junit:4.13.1'// for @Mapper import error

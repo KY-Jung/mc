@@ -11,13 +11,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests().requestMatchers(
                         new AntPathRequestMatcher("/**")).permitAll()
                 .and()
-                  .csrf().ignoringRequestMatchers(
+                    .csrf().ignoringRequestMatchers(
                         new AntPathRequestMatcher("/h2-console/**"))
+                .and()
+                    .csrf().ignoringRequestMatchers(
+                        new AntPathRequestMatcher("/**"))
                 .and()
                     .headers()
                     .addHeaderWriter(new XFrameOptionsHeaderWriter(
@@ -26,4 +30,5 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 }

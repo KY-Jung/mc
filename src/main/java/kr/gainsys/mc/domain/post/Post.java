@@ -1,6 +1,7 @@
-package kr.gainsys.mc.domain.posts;
+package kr.gainsys.mc.domain.post;
 
 import jakarta.persistence.*;
+import kr.gainsys.mc.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import lombok.ToString;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Posts extends BaseTimeEntity {
+public class Post extends BaseTimeEntity {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +27,16 @@ public class Posts extends BaseTimeEntity {
 	private String author;
 
 	@Builder
-	public Posts(String title, String content, String author) {
+	public Post(String title, String content, String author) {
 		this.title = title;
 		this.content = content;
 		this.author = author;
+	}
+
+	public void update(String title, String content, String author) {
+		if (title != null)		this.title = title;
+		if (content != null)	this.content = content;
+		if (author != null)		this.author = author;
 	}
 
 }

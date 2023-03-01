@@ -1,4 +1,4 @@
-package kr.gainsys.mc.domain.posts;
+package kr.gainsys.mc.domain;
 
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
