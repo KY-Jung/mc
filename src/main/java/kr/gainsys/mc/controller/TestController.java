@@ -18,7 +18,6 @@ import kr.gainsys.mc.service.IdService;
 import kr.gainsys.mc.vo.IdVo;
 
 
-
 @Slf4j
 @Controller
 public class TestController {

@@ -10,5 +10,9 @@ import kr.gainsys.mc.vo.IdVo;
 @Repository
 @Mapper
 public interface IdMapper {
-	List<IdVo> selectIdList();	
+
+	// for iBatis
+
+	List<IdVo> selectIdList();
+
 }

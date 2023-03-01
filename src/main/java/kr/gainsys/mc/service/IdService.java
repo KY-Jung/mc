@@ -11,6 +11,8 @@ import kr.gainsys.mc.vo.IdVo;
 @Service
 public class IdService {
 
+	// for iBatis
+
 	@Autowired
 	public IdMapper idMapper;
 	

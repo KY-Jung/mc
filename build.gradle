@@ -25,9 +25,12 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'	// for @Mapper import error
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+	testImplementation 'junit:junit:4.13.1'// for @Mapper import error
 
-	compileOnly 'org.projectlombok:lombok'
+	implementation 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'com.h2database:h2'
 	runtimeOnly 'com.mysql:mysql-connector-j'
