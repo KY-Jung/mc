@@ -35,3 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### DB ###
+application-devdb.yml
+application-proddb.yml

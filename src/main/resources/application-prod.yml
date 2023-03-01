@@ -7,6 +7,9 @@ server:
 ################################################################################
 spring:
 
+  profiles:
+    include: proddb
+
   thymeleaf:
     cache: true
   devtools:
