@@ -25,9 +25,11 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
 	implementation 'com.google.code.gson:gson:2.9.0'
+	implementation 'org.springframework.session:spring-session-jdbc'
 
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
-	testImplementation 'junit:junit:4.13.1'// for @Mapper import error
+	//testImplementation 'junit:junit:4.13.1'// for @Mapper import error
+	testImplementation 'junit:junit'// for @Mapper import error
 
 	implementation 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
@@ -37,6 +39,7 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testCompileOnly 'org.springframework.security:spring-security-test'
 }
 
 tasks.named('test') {

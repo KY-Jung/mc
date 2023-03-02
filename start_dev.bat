@@ -2,7 +2,7 @@
 
 echo.
 
-set MODE_RUN=prod
+set MODE_RUN=dev
 set PATH_JAR=.\build\libs
 set FILE_JAR=mc-0.0.1.jar
 
@@ -16,6 +16,11 @@ cd %PATH_JAR%
 cd ..\..
 
 echo.
+
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: -Dspring.config.location=classpath:/application.yml,/home/mc/config/application-proddv.yml
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
 
 pause
 

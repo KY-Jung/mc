@@ -1,13 +1,32 @@
 
 ################################################################################
 server:
-  port: 48081
+  port: 7081
 ################################################################################
 
 ################################################################################
 spring:
 
   profiles:
-      include: devdb
+    #include: devdb
+
+  datasource:
+    hikari:
+      username: imagetalk
+      password: Tbwdlalwlxhr1!
+      maximum-pool-size: 10
+      connection-test-query: SELECT 1
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:33306/it_db
+
+  jpa:
+    hibernate:
+      ddl-auto: validate                                   # 테이블 검사해서 불일치하면 서버 중지
+    defer-datasource-initialization: false                 # table 없으면 자동 생성
+
+  sql:
+    init:
+      mode: never                                          # data.sql 실행 안함
+
 
 ################################################################################

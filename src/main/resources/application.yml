@@ -9,15 +9,14 @@
 server:
   servlet:
     context-path: /mc
-  port: 48080
+  port: 7080
 ################################################################################
 
 ################################################################################
 spring:
 
   datasource:
-    #url: jdbc:h2:~/local
-    url: jdbc:h2:~/local;MODE=MySQL;DATABASE_TO_LOWER=TRUE;AUTO_SERVER=true       # for JdbcSQLSyntaxErrorException
+    url: jdbc:h2:~/local;MODE=MySQL                        # for JdbcSQLSyntaxErrorException
     driverClassName: org.h2.Driver
     username: sa
     password:
@@ -28,13 +27,21 @@ spring:
   jpa:
     properties:
       hibernate:
-        #dialect: org.hibernate.dialect.H2Dialect
         dialect: org.hibernate.dialect.MySQL57Dialect
         format_sql: true                                   # 콘솔에 표시되는 쿼리를 가독성있게 보여준다
-    hibernate:
-      ddl-auto: update
     generate-sql: true
     show-sql: true                                         # 콘솔에 JPA 쿼리 출력
+    hibernate:
+      ddl-auto: update
+    defer-datasource-initialization: true                  # table 없으면 자동 생성
+
+  sql:
+    init:
+      mode: always                                         # data.sql 실행 여부
+  session:
+    store-type: jdbc
+    jdbc:
+      initialize-schema: always
 
   thymeleaf:
     cache: false

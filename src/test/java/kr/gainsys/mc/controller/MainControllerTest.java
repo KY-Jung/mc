@@ -1,18 +1,21 @@
 package kr.gainsys.mc.controller;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.security.test.context.support.WithMockUser;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+//@RunWith(SpringRunner.class)				// JPA 를 사용할때는 없으면 에러
 //@ExtendWith(SpringExtension.class)		// 없어도 에러 안남
 //@WebMvcTest	--> error : required a bean of type
 @AutoConfigureMockMvc
@@ -20,6 +23,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MainControllerTest {
 
 	////////////////////////////////////////////////////////////////////////////////
+	@Value("${server.servlet.context-path}")
+	private String CONTEXT_PATH;
+
 	@LocalServerPort
 	private int LOCALSERVER_PORT;
 	////////////////////////////////////////////////////////////////////////////////
@@ -27,11 +33,15 @@ public class MainControllerTest {
 	////////////////////////////////////////////////////////////////////////////////
 	@Autowired
 	private MockMvc mockMvc;
+
+	@Autowired
+	private TestRestTemplate testRestTemplate;
 	////////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////////////////////////////////
 	@Test
-	public void testDoMain() throws Exception {
+	@WithMockUser(roles = "USER")
+	public void doTestMain() throws Exception {
 		mockMvc.perform(get("/"))
 				//.andExpect(status().isOk());
 				.andExpect(status().is(302));
