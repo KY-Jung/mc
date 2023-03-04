@@ -28,9 +28,8 @@ dependencies {
 	implementation 'org.springframework.session:spring-session-jdbc'
 
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
-	//testImplementation 'junit:junit:4.13.1'// for @Mapper import error
-	testImplementation 'junit:junit'// for @Mapper import error
 
+	testImplementation 'junit:junit'// for @Mapper import error
 	implementation 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'

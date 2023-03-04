@@ -5,14 +5,14 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import kr.gainsys.mc.vo.IdVo;
+import kr.gainsys.mc.vo.TestMybatisVo;
 
 @Repository
 @Mapper
-public interface IdMapper {
+public interface TestMybatisMapper {
 
-	// for iBatis
+	// for Mybatis
 
-	List<IdVo> selectIdList();
+	List<TestMybatisVo> selectListAll();
 
 }

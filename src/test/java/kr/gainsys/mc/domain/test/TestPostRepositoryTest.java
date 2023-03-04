@@ -1,9 +1,5 @@
-package kr.gainsys.mc.domain.post;
+package kr.gainsys.mc.domain.test;
 
-//import org.junit.After;
-//import org.junit.Before;
-//import org.junit.Test;
-//import org.junit.runner.RunWith;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
@@ -15,7 +11,6 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -30,7 +25,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 //@ExtendWith(SpringExtension.class)	// error
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PostRepositoryTest {
+public class TestPostRepositoryTest {
+
+	////////////////////////////////////////////////////////////////////////////////
+	static {
+		// 이미 run 되어 있을 경우에도 테스트 가능
+		System.setProperty("tomcat.ajp.port", "7007");
+	}
+	////////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////////////////////////////////
 	@LocalServerPort
@@ -44,7 +46,7 @@ public class PostRepositoryTest {
 	private MockMvc mockMvc;
 
 	@Autowired
-	PostRepository postRepository;
+	TestPostRepository testPostRepository;
 	////////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////////////////////////////////
@@ -72,21 +74,21 @@ public class PostRepositoryTest {
 		String title = "PostRepositoryTest 게시물 " + str_time;
 		String content = "PostRepositoryTest 내용 " + str_time;
 		String author = "ky@gainsys.kr";
-		Post post = postRepository.save(Post.builder()
+		TestPost testPost = testPostRepository.save(TestPost.builder()
 				.title(title)
 				.content(content)
 				.author(author)
 				.build());
 
-		Optional<Post> optional_posts = postRepository.findById(post.getId());
+		Optional<TestPost> optional_posts = testPostRepository.findById(testPost.getId());
 		if (!optional_posts.isPresent()) {
 			throw new Exception ("DB insert error");
 		}
-		Post ret_post = optional_posts.get();
-		System.out.println(ret_post);
+		TestPost ret_testPost = optional_posts.get();
+		System.out.println(ret_testPost);
 
-		assertThat(ret_post.getTitle()).isEqualTo(title);
-		assertThat(ret_post.getContent()).isEqualTo(content);
+		assertThat(ret_testPost.getTitle()).isEqualTo(title);
+		assertThat(ret_testPost.getContent()).isEqualTo(content);
 	}
 	////////////////////////////////////////////////////////////////////////////////
 

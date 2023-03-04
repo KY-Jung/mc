@@ -10,13 +10,20 @@ server:
   servlet:
     context-path: /mc
   port: 7080
+tomcat:
+  ajp:
+    protocol: AJP/1.3
+    port: 7006
+    enabled: true                                          # 효과없음
 ################################################################################
 
 ################################################################################
 spring:
+  config:
+    import: custom.yml
 
   datasource:
-    url: jdbc:h2:~/local;MODE=MySQL                        # for JdbcSQLSyntaxErrorException
+    url: jdbc:h2:~/local;MODE=MySQL;AUTO_SERVER=TRUE       # for JdbcSQLSyntaxErrorException
     driverClassName: org.h2.Driver
     username: sa
     password:
@@ -32,16 +39,16 @@ spring:
     generate-sql: true
     show-sql: true                                         # 콘솔에 JPA 쿼리 출력
     hibernate:
-      ddl-auto: update
-    defer-datasource-initialization: true                  # table 없으면 자동 생성
+      ddl-auto: update                                     # 테이블 검사해서 없으면 생성 (update/validate/none)
+    defer-datasource-initialization: true                  # table 없으면 자동 생성 (true/false)
 
   sql:
     init:
-      mode: always                                         # data.sql 실행 여부
+      mode: always                                         # data.sql 실행 여부 (always/never)
   session:
     store-type: jdbc
     jdbc:
-      initialize-schema: always
+      initialize-schema: always                            # session 테이블 없으면 다시 생성
 
   thymeleaf:
     cache: false
@@ -50,8 +57,8 @@ spring:
     check-template-location: true			               # templates 디렉토리에 파일이 있는지 없는지 체크, 없으면 에러를 발생
   devtools:
     restart:
-      enabled: true							               # 소스파일에 변화가 있을 때 자동으로 서버 재 시작 설정
       additional-exclude: static/**,templates/**
+      enabled: true							               # 소스파일에 변화가 있을 때 자동으로 서버 재시작 설정
     livereload:
       enabled: true		                				   # 정적 리소스에 변화가 있을 때 바로 반영
 ################################################################################
@@ -64,12 +71,14 @@ logging:
         mc:
           controller: debug
     root: info
-
-#    logging.logback.rollingpolicy.max-history=30
-#    logging.logback.rollingpolicy.max-file-size=100MB
-#    logging.file.name=logs/sbb.log
-#    logging.logback.rollingpolicy.file-name-pattern=${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
-#    logging.pattern.dateformat=yyyy-MM-dd HH:mm:ss.SSS,Asia/Seoul
+  logback:
+    rollingpolicy:
+      max-history: 30
+      max-file-size: 100MB
+      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+  file.name: logs/mc.log
+  pattern:
+    dateformat: yyyy-MM-dd HH:mm:ss.SSS
 ################################################################################
 
 ################################################################################

@@ -3,11 +3,11 @@
 1. JDK 17 (with Gradle 7.6)
 2. https://start.spring.io
 
-
 [test]
 http://127.0.0.1:7080/mc/hello
 http://127.0.0.1:7080/mc/test_thymeleaf
 http://127.0.0.1:7080/mc/test_post
+http://www.gainsys.kr/mc/test_thymeleaf
 
 [mybatis]
 1. mybatis/?Mapper.xml 작성
@@ -16,53 +16,34 @@ http://127.0.0.1:7080/mc/test_post
 4. kr.gainsys.mc.controller.? 에서 호출
 -. 필요시 Vo 추가
 
-
 [다국어]
 -. kr.gainsys.mc.config.MessageConfig 에서 설정
 -. messages/message_en.propertis 에 추가
 
-
 [dev/prod]
 -. -Dspring.profiles.active=prod or dev 로 구분
+-. -Dspring.config.location=classpath:/application.yml,/home/mc/config/application-prod.yml
 
+[time zone]
+-.  -Duser.timezone="Asia/Seoul" 설정
 
-[JPA]
--. time zone 설정하는 방법
+[WAR + JNDI]
+-. 외부 배포용이 아니므로 사용하지 않음
+
+[Apache 연동]
+-. worker.properties, JKMount 만 등록
+
+-. 운영서버 로그 확인
+    -. /logs 밑에 안 생김
+-. 운영서버 nohup 실행 확인
 
 
 
 [JWT]
 
-
-	
-[로그]
-
-
-
-[war]
-
-
-
-[Apache 연동]
--. path 만 등록	--> 일단 보류
-    -. https://java.ihavenomoney.co.kr/?page_id=275
--. tomcat10 으로 it, opensso 업그레이드 시도
-    --> ?
-
-
-[JNDI]
-
-
-
-[2 DB]
-
-
 [이중처리 방지]
-
 
 [배치]
 
-
 [인증서]
-
 

@@ -14,11 +14,11 @@ echo "jar file : $FILE_JAR"
 
 cd $PATH_JAR
 $JAVA_HOME/bin/java -jar -Dspring.profiles.active=$MODE_RUN $FILE_JAR
-###nohup $JAVA_HOME/bin/java -jar -Dspring.profiles.active=$MODE_RUN $FILE_JAR > $LOG_NOHUP 2>&1 &
+###nohup $JAVA_HOME/bin/java -jar -Dspring.profiles.active=$MODE_RUN -Duser.timezone="Asia/Seoul" $FILE_JAR > $LOG_NOHUP 2>&1 &
 cd -
 
 echo ""
 
 ################################################################################
-# -Dspring.config.location=classpath:/application.yml,/home/mc/config/application-proddv.yml
+# -Dspring.config.location=classpath:/application.yml,/home/mc/config/application-prod.yml
 ################################################################################

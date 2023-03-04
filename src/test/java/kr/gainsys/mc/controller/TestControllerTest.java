@@ -1,11 +1,9 @@
 package kr.gainsys.mc.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import kr.gainsys.mc.dto.PostRequestDto;
+import kr.gainsys.mc.dto.TestPostRequestDto;
 
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -14,7 +12,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.*;
 import org.springframework.security.test.context.support.WithMockUser;
-import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.util.LinkedMultiValueMap;
@@ -22,7 +19,6 @@ import org.springframework.util.MultiValueMap;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -32,6 +28,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TestControllerTest {
+
+	////////////////////////////////////////////////////////////////////////////////
+	static {
+		// 이미 run 되어 있을 경우에도 테스트 가능
+		System.setProperty("tomcat.ajp.port", "7007");
+	}
+	////////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////////////////////////////////
 	@Value("${server.servlet.context-path}")
@@ -48,6 +51,10 @@ public class TestControllerTest {
 	@Autowired
 	private TestRestTemplate testRestTemplate;
 	////////////////////////////////////////////////////////////////////////////////
+
+
+	@Value("${server.name}")
+	private String appStr;
 
 	////////////////////////////////////////////////////////////////////////////////
 	@Test
@@ -77,12 +84,12 @@ public class TestControllerTest {
 		String title = "json title";
 		String content = "json content";
 		String author = "json author";
-		PostRequestDto postRequestDto = PostRequestDto.builder()
+		TestPostRequestDto testPostRequestDto = TestPostRequestDto.builder()
 				.title(title)
 				.content(content)
 				.author(author)
 				.build();
-		String str_json = new Gson().toJson(postRequestDto);
+		String str_json = new Gson().toJson(testPostRequestDto);
 		//str_json = new ObjectMapper().writeValueAsString(postRequestDto);
 		//PostRequestDto postRequestDto2 = new Gson().fromJson(str_json, PostRequestDto.class);
 		//System.out.println("postRequestDto2:" + postRequestDto2);
@@ -124,14 +131,12 @@ public class TestControllerTest {
 	////////////////////////////////////////////////////////////////////////////////
 
 	////////////////////////////////////////////////////////////////////////////////
-	/*
-	// mybatis 사용 안함
+	// mybatis
 	@Test
 	public void doTestMybatis() throws Exception {
 		mockMvc.perform(get("/test_mybatis"))
 				.andExpect(status().isOk());
 	}
-	*/
 	////////////////////////////////////////////////////////////////////////////////
 
 }

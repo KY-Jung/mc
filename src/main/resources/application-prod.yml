@@ -7,7 +7,7 @@ server:
 ################################################################################
 spring:
 
-  profiles:
+  #profiles:
     #include: proddb
 
   datasource:
@@ -16,23 +16,26 @@ spring:
       password: Tbwdlalwlxhr1!
       maximum-pool-size: 10
       connection-test-query: SELECT 1
+    url: jdbc:mysql://imagetalk-db.ccgxkxaivbvt.ap-northeast-2.rds.amazonaws.com:3306/it_db
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:33306/it_db
 
   jpa:
     hibernate:
-      ddl-auto: none                                       # 테이블 검사안함
-    defer-datasource-initialization: false                 # table 없으면 자동 생성 안함
+      ###ddl-auto: none                                       # 테이블 검사안함 (update/validate/none)
+      ddl-auto: update                                     # 테이블 검사해서 불일치하면 서버 중지 (update/validate/none)
+    ###defer-datasource-initialization: false                 # table 없으면 자동 생성 (true/false)
+    defer-datasource-initialization: true                  # table 없으면 자동 생성 (true/false)
+
+  sql:
+    init:
+      ###mode: never                                          # data.sql 실행 안함 (always/never)
+      mode: always                                         # data.sql 실행 안함 (always/never)
 
   thymeleaf:
     cache: true
   devtools:
     restart:
-      enabled: false						               # 소스파일에 변화가 있을 때 자동으로 서버 재 시작 설정
-
-  sql:
-    init:
-      mode: never                                          # data.sql 실행 안함
+      enabled: false						               # 소스파일에 변화가 있을 때 자동으로 서버 재시작 설정
 
 
 ################################################################################
