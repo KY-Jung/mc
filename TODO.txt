@@ -33,12 +33,6 @@ http://www.gainsys.kr/mc/test_thymeleaf
 [Apache 연동]
 -. worker.properties, JKMount 만 등록
 
--. 운영서버 로그 확인
-    -. /logs 밑에 안 생김
--. 운영서버 nohup 실행 확인
-
-
-
 [JWT]
 
 [이중처리 방지]

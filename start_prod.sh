@@ -13,7 +13,7 @@ echo "jar path : $PATH_JAR"
 echo "jar file : $FILE_JAR"
 
 cd $PATH_JAR
-$JAVA_HOME/bin/java -jar -Dspring.profiles.active=$MODE_RUN $FILE_JAR
+$JAVA_HOME/bin/java -jar -Dspring.profiles.active=$MODE_RUN -Duser.timezone="Asia/Seoul" $FILE_JAR
 ###nohup $JAVA_HOME/bin/java -jar -Dspring.profiles.active=$MODE_RUN -Duser.timezone="Asia/Seoul" $FILE_JAR > $LOG_NOHUP 2>&1 &
 cd -
 

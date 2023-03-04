@@ -76,7 +76,7 @@ logging:
       max-history: 30
       max-file-size: 100MB
       file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
-  file.name: logs/mc.log
+  file.name: /logs/mc/mc.log
   pattern:
     dateformat: yyyy-MM-dd HH:mm:ss.SSS
 ################################################################################
