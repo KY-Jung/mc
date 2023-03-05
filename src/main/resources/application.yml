@@ -20,7 +20,7 @@ tomcat:
 ################################################################################
 spring:
   config:
-    import: custom.yml
+    import: custom_config.yml
 
   datasource:
     url: jdbc:h2:~/local;MODE=MySQL;AUTO_SERVER=TRUE       # for JdbcSQLSyntaxErrorException
@@ -64,21 +64,23 @@ spring:
 ################################################################################
 
 ################################################################################
-logging:
-  level:
-    kr:
-      gainsys:
-        mc:
-          controller: debug
-    root: info
-  logback:
-    rollingpolicy:
-      max-history: 30
-      max-file-size: 100MB
-      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
-  file.name: /logs/mc/mc.log
-  pattern:
-    dateformat: yyyy-MM-dd HH:mm:ss.SSS
+# logback-spring.xml 에서 설정 (scheduler 파일 분리를 위해)
+#logging:
+#  level:
+#    kr:
+#      gainsys:
+#        mc:
+#          controller: debug
+#    root: info
+#  logback:
+#    rollingpolicy:
+#      max-history: 30
+#      max-file-size: 100MB
+#      file-name-pattern: ${LOG_FILE}.%d{yyyy-MM-dd}-%i.log
+#  file:
+#    name: /logs/mc/mc.log
+#  pattern:
+#    dateformat: yyyy-MM-dd HH:mm:ss.SSS
 ################################################################################
 
 ################################################################################

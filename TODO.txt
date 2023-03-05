@@ -33,6 +33,9 @@ http://www.gainsys.kr/mc/test_thymeleaf
 [Apache 연동]
 -. worker.properties, JKMount 만 등록
 
+[로그]
+-. 분리
+
 [JWT]
 
 [이중처리 방지]
